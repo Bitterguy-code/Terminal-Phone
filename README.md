@@ -99,7 +99,7 @@
 1. **Create Feature Branch:**
 
     ```bash
-    git checkout -b feature-Calendar
+    git checkout -b feature-calendar
     ```
 
 2. **Implement Calendar:**
