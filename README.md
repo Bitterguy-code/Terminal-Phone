@@ -19,7 +19,7 @@
 
 ## Feature Implementation
 
-### Team 1 - Create Terminal Phone Menu Interface
+### Team 1 - Create Terminal Phone Menu Interface - Jason
 
 1. **Create Feature Branch:**
 
@@ -28,8 +28,11 @@
     ```
 
 2. **Implement Menu Interface:**
-    - Personalize the phone with images and colors.
-    - Design a menu interface using basic Python functions.
+    - Terminal Phase:
+        - Numbered menu for all apps
+    - Gui Phase:
+        - Personalize the phone with images and colors.
+        - Design a menu interface using basic Python functions.
   
 3. **Commit Changes:**
 
@@ -44,7 +47,7 @@
     git push origin feature-terminal-menu
     ```
 
-### Team 2 - Manage Contacts
+### Team 2 - Manage Contacts - Rachel
 
 1. **Create Feature Branch:**
 
@@ -67,8 +70,54 @@
     ```bash
     git push origin feature-manage-contacts
     ```
+### Team 3 - Calculator - Tim
 
-### Team 3 - Search on the Internet
+1. **Create Feature Branch:**
+
+    ```bash
+    git checkout -b feature-calculator
+    ```
+
+2. **Implement Contact Management:**
+    - Do basic arithmetic on two numbers allowing for a continuation of calculations from the result.
+    - To-Do: full string interpretation 
+  
+3. **Commit Changes:**
+
+    ```bash
+    git add .
+    git commit -m "Implement Calculator"
+    ```
+
+4. **Push Feature Branch:**
+
+    ```bash
+    git push origin feature-calculator
+
+### Team 4 - Calendar - Noah
+
+1. **Create Feature Branch:**
+
+    ```bash
+    git checkout -b feature-Calendar
+    ```
+
+2. **Implement Calendar:**
+    - Display dates, allow user to set time/date events, be able to display said events.
+  
+3. **Commit Changes:**
+
+    ```bash
+    git add .
+    git commit -m "Implement Calendar"
+    ```
+
+4. **Push Feature Branch:**
+
+    ```bash
+    git push origin feature-calendar
+
+### Team 5 - Search on the Internet - Stephanie
 
 1. **Create Feature Branch:**
 
@@ -77,6 +126,7 @@
     ```
 
 2. **Implement Internet Search:**
+    **Save for GUI Phase**
     - Open a browser for the user.
     - Implement search functionality and history.
   
@@ -93,7 +143,7 @@
     git push origin feature-internet-search
     ```
 
-### Team 4 - Manage Tasks and Subtasks
+### Team 6 - Manage Tasks and Subtasks
 
 1. **Create Feature Branch:**
 
@@ -102,6 +152,7 @@
     ```
 
 2. **Implement Task Management:**
+    **To-Do**
     - Create, update, delete, and read tasks and subtasks.
   
 3. **Commit Changes:**
