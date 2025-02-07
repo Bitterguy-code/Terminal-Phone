@@ -1,4 +1,4 @@
-# Terminal Phone
+# Terminal Phone - Code Blooded
 
 ## Getting Started
 
