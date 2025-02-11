@@ -2,8 +2,8 @@
 # Create, update, delete, and read contacts
 
 class Contacts:
-    def __init__(self, contact_dict):
-        self.contact_dict = {}
+    def __init__(self, contact_dict={}):
+        self.contact_dict = contact_dict
 
     # Create contact
     def create_contact(self):
