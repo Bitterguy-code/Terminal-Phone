@@ -3,7 +3,7 @@ import sys          # <---- used to access the lower level write methods to get 
 import subprocess   # <---- used to clear the screen using subsystem.run('clear',shell=True)
 import tty          # <---- used to get raw input from keyboard
 import termios      # <---- used to restore terminal input and display from being raw
-
+import readline
 # print('\n\n\n\n\n\n\n\n\n\n')
 oldval = [27906, 5, 1215, 35387, 15, 15, [b'\x03', b'\x1c', b'\x7f', b'\x15', b'\x04', b'\x00', b'\x01', b'\x00', b'\x11', b'\x13', b'\x1a', b'\xff', b'\x12', b'\x0f', b'\x17', b'\x16', b'\xff', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00', b'\x00']]
 #^ stores system ermios datta in a variable in case things go ... not as expected
@@ -214,7 +214,7 @@ numbers_and_symbols = { ## <----  defines a dictionary full of 6x7 ansi color co
 
 subprocess.run('clear',shell=True) # <---- clears terminal
 
-def bigPrint(chars):   # <----  method to read list, grab dictionary values, append lines 1-7 in ansi characters to line 0 -6 to print later
+def bigPrint(chars, color=False):   # <----  method to read list, grab dictionary values, append lines 1-7 in ansi characters to line 0 -6 to print later
     line0 = []
     line1 = []
     line2 = []
@@ -225,6 +225,20 @@ def bigPrint(chars):   # <----  method to read list, grab dictionary values, app
     for x,y in enumerate(chars): # <---- run through each character in the provided list
 
         getMatrix = numbers_and_symbols[str(y)]  # <---- gets the list value from the key in chars, appends them to the appropriate line 0 - 6 list
+
+        if color != False:
+            match color:
+                case "RED":
+                    color = "\u001b[41m"
+                case "BLUE":
+                    color = "\u001b[44m"
+                case "GREEN":
+                    color = "\u001b[42m"
+                case "YELLOW":
+                    color = "\u001b[43m"
+
+            getMatrix = [x.replace("\033[37;47m", color) for x in getMatrix]
+
         line0.append(getMatrix[0])
         line1.append(getMatrix[1])
         line2.append(getMatrix[2])
@@ -242,6 +256,7 @@ choiceList = ['quit','clear',0,1,2,3,4,5,6,7,8,9,"+",'-','/',"*",'=','dotshow'] 
 bigPrint(choiceList)  # <----  print the menu
 
 def pointer(pointlist):  # <---- navigate the printed menu with a pointer
+    
     if len(pointlist) > 18:  
         pointlist = pointlist[len(pointlist)-18:len(pointlist)] # <---- if the list provided is too long, cut it down to the maximum size
                                                                         # this should never happen but is here just in case
@@ -260,7 +275,24 @@ def clc():      # <----  The acutal calculator
     
     sendInput = ['point']  # <---- default single entry in the pointer which rests it on the 1st option
     running = True  # <---- on/off switch for the below loop
+    color = input("Enter a color preference if you have one. Invalid colors will be ignored.  red, yellow, green, or blue: ").upper()
+    if not color in ["RED","BLUE","GREEN","YELLOW"]:
+        color = False
+    sys.stdout.write('\x1b[1A')
+    sys.stdout.write('\x1b[2K\r\x1b[K')
+    sys.stdout.write('\x1b[1B')
+    sys.stdout.flush()
     while running:
+        
+
+        
+
+
+        # if color != False:
+        #     if color not in ["red","green","red","yellow","blue"]:
+        #         print("invalid color")
+        #         running = False
+            
         tty.setraw(sys.stdin)   # <----  require keyboard input to be processed in its raw form which is broken into three 2-digit numbers or escape characters
         char = sys.stdin.read(1)   # <----   capture the first input 2-digit # or escape code
         if char in ['\r','\n']:  # <---- if it's the enter key
@@ -361,7 +393,7 @@ def clc():      # <----  The acutal calculator
 
             termios.tcsetattr(sys.stdin, termios.TCSADRAIN, terminalSettings)  # <----  restore terminal settings so not process raw input
 
-            bigPrint(printline)  # <----  print the printline
+            bigPrint(printline,color)  # <----  print the printline
             sys.stdout.write('\x1b[6A')  # <----  move up siz lines
 
         
