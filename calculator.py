@@ -296,7 +296,10 @@ def clc():      # <----  The acutal calculator
                             templine = '*'
                         if "/" in printline:
                             templine = '/'
-                        printline[printline.index(templine)] = operand  # <---- replace the old operator with the new one. going from addition to subtraction etc...
+                        if preline[0] != "-":  # <---- ensure the operand that exists isn't just a negative symbol from the preline
+                            printline[printline.index(templine)] = operand  # <---- replace the old operator with the new one. going from addition to subtraction etc...
+                        else:
+                            printline.append(operand)  # <---- it was a negative, just append the new operand to the end of the line and move forward
 
                         
                     else:   # <---- otherwise, there were no prior operators so set the operand to the current selection and update the printed line
